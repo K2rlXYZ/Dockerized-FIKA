@@ -2,7 +2,7 @@
 #  > Docker: "Builder" image stage                                          #
 #    Used to install system dependencies and perform mandatory config.      #
 # ========================================================================= #
-FROM debian:bullseye-slim AS builder
+FROM debian:bookworm-slim AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -51,7 +51,7 @@ RUN . /root/.nvm/nvm.sh \
 #  > Docker: "Final" image stage                                            #
 #    Used in application deployment.                                        #
 # ========================================================================= #
-FROM debian:bullseye-slim AS fika
+FROM debian:bookworm-slim AS fika
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
