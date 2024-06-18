@@ -1,0 +1,18 @@
+volumes:
+  tarkov: {}
+
+services:
+  tarkov:
+    image: k2rlxyz/fika:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - TARKOV_UID=421
+    volumes:
+      - tarkov:/opt/server
+    ports:
+      - "6969:6969"
+    environment:
+      - HEADLESS=true
+    restart: unless-stopped
