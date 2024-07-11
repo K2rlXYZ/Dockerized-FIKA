@@ -23,15 +23,15 @@ if [ ! -e "/opt/server/version" ] || [ ! -z "$FORCE" ]; then
     rm -r /opt/fika
     cd /opt/server
     chown $(id -u):$(id -g) ./* -Rf
-    sed -i 's/\"ip\": \"127.0.0.1\"/\"ip\": \"0.0.0.0\"/g' ./Aki_Data/Server/configs/http.json
-    sed -i "s/\"backendIp\": \"127.0.0.1\"/\"backendIp\": \"$HOST_IP\"/g" ./Aki_Data/Server/configs/http.json
+    sed -i 's/\"ip\": \"127.0.0.1\"/\"ip\": \"0.0.0.0\"/g' ./SPT_Data/Server/configs/http.json
+    sed -i "s/\"backendIp\": \"127.0.0.1\"/\"backendIp\": \"$HOST_IP\"/g" ./SPT_Data/Server/configs/http.json
 
     end=$(date +%s)
 
     echo "Copied SPT & FIKA files to your machine in $(($end-$start)) second(s)."
     echo "Booting up the server for $START_TIMEOUT to generate all the required files... please wait."
 
-    NODE_CHANNEL_FD= timeout "$START_TIMEOUT" ./Aki.Server.exe </dev/null >/dev/null 2>&1 || true
+    NODE_CHANNEL_FD= timeout "$START_TIMEOUT" ./SPT.Server.exe </dev/null >/dev/null 2>&1 || true
 
     echo "$FIKA_SERVER_BRANCH" > /opt/server/version
     echo "Version $FIKA_SERVER_BRANCH is now set in ./server/version"
