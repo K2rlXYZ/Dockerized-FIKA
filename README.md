@@ -9,7 +9,7 @@ When the server has been initialized, it'll generate an `/opt/server/version` fi
 | Argument           | Description                         | Default |
 |--------------------|-------------------------------------|---------|
 | NODE_VERSION       | The version of NodeJS to install.   | 20.11.1 |
-| SPT_BRANCH         | The version of SPT to install.      | 3.9.0   |
+| SPT_BRANCH         | The version of SPT to install.      | 3.9.1   |
 | FIKA_SERVER_BRANCH | The version of FIKA to install.     | v2.2.1  |
 | TARKOV_UID         | The UID of the Tarkov user & group. | 421     |
 

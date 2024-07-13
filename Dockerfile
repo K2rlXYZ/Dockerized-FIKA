@@ -19,7 +19,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | b
     && nvm install "${NODE_VERSION}" \
     && nvm alias default "${NODE_VERSION}"
 
-ARG SPT_BRANCH="3.9.0"
+ARG SPT_BRANCH="3.9.1"
 
 RUN git clone --depth=1 --branch $SPT_BRANCH https://dev.sp-tarkov.com/SPT/Server.git /opt/spt
 
@@ -64,7 +64,7 @@ RUN apt-get update \
 COPY --from=builder /opt/server /opt/fika
 
 ARG TARKOV_UID=421
-ARG SPT_BRANCH="3.9.0"
+ARG SPT_BRANCH="3.9.1"
 ARG FIKA_SERVER_BRANCH="v2.2.1"
 
 ENV SPT_BRANCH=$SPT_BRANCH
