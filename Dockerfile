@@ -19,14 +19,14 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | b
     && nvm install "${NODE_VERSION}" \
     && nvm alias default "${NODE_VERSION}"
 
-ARG SPT_BRANCH="3.8.3"
+ARG SPT_BRANCH="3.9.1"
 
 RUN git clone --depth=1 --branch $SPT_BRANCH https://dev.sp-tarkov.com/SPT/Server.git /opt/spt
 
 WORKDIR /opt/spt
 
 RUN git lfs pull
-## remove the encoding from aki - todo: find a better workaround
+## remove the encoding from SPT - todo: find a better workaround
 RUN sed -i '/setEncoding/d' /opt/spt/project/src/Program.ts || true
 
 WORKDIR /opt/spt/project
@@ -37,7 +37,7 @@ RUN . /root/.nvm/nvm.sh \
     && mv build/ /opt/server/ \
     && rm -rf /opt/spt
 
-ARG FIKA_SERVER_BRANCH="v2.1.1"
+ARG FIKA_SERVER_BRANCH="v2.2.1"
 
 RUN git clone --depth=1 --branch $FIKA_SERVER_BRANCH https://github.com/project-fika/Fika-Server.git /opt/server/user/mods/fika-server
 
@@ -64,8 +64,8 @@ RUN apt-get update \
 COPY --from=builder /opt/server /opt/fika
 
 ARG TARKOV_UID=421
-ARG SPT_BRANCH="3.8.3"
-ARG FIKA_SERVER_BRANCH="v2.1.1"
+ARG SPT_BRANCH="3.9.1"
+ARG FIKA_SERVER_BRANCH="v2.2.1"
 
 ENV SPT_BRANCH=$SPT_BRANCH
 ENV FIKA_SERVER_BRANCH=$FIKA_SERVER_BRANCH
@@ -83,5 +83,5 @@ RUN chown -R tarkov:tarkov /opt \
 USER tarkov
 WORKDIR /opt/server
 ENTRYPOINT ["/opt/entrypoint.sh"]
-CMD ["./Aki.Server.exe"]
+CMD ["./SPT.Server.exe"]
 EXPOSE 6969
